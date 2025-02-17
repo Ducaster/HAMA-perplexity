@@ -93,12 +93,18 @@ export class PerplexityService {
           $('meta[property="og:description"]').attr('content')?.trim() ||
           '설명 없음';
 
-        const image =
+        const imageUrl =
           $('meta[property="og:image"]').attr('content') ||
           $('meta[name="twitter:image"]').attr('content') ||
           'https://t4.ftcdn.net/jpg/07/91/22/59/360_F_791225927_caRPPH99D6D1iFonkCRmCGzkJPf36QDw.jpg'; // 기본 썸네일
 
-        return { url, title, description, image };
+        // 이미지 URL을 Base64로 변환
+        let base64Image: string = '';
+        if (imageUrl) {
+          base64Image = (await this.convertImageToBase64(imageUrl)) ?? '';
+        }
+
+        return { url, title, description, image: base64Image };
       } catch (error) {
         return {
           url,
@@ -120,8 +126,21 @@ export class PerplexityService {
             url: res.reason?.url || '알 수 없음',
             title: '불러오기 실패',
             description: '페이지를 가져올 수 없습니다.',
-            image: 'https://example.com/default-thumbnail.jpg',
+            image:
+              'https://t4.ftcdn.net/jpg/07/91/22/59/360_F_791225927_caRPPH99D6D1iFonkCRmCGzkJPf36QDw.jpg',
           },
     );
+  }
+
+  private async convertImageToBase64(imageUrl: string): Promise<string | null> {
+    try {
+      const response = await axios.get(imageUrl, {
+        responseType: 'arraybuffer',
+      });
+      const buffer = Buffer.from(response.data, 'binary');
+      return `data:${response.headers['content-type']};base64,${buffer.toString('base64')}`;
+    } catch (error) {
+      return null;
+    }
   }
 }
