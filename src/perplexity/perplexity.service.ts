@@ -34,7 +34,8 @@ export class PerplexityService {
             '답변은 최대한 짧게 작성해 주세요.' +
             '답변은 최대한 쉽게 작성해 주세요.' +
             '결과에서 블로그는 최대한 제외해 주세요.' +
-            '상품을 찾아야 한다면 Coupang.com에서 주로 찾아주세요',
+            '상품을 찾아야 한다면 Coupang.com에서 주로 찾아주세요' +
+            '답변 텍스트에 강조 표시를 사용하지 마세요.',
         },
         { role: 'user', content: question },
       ],
