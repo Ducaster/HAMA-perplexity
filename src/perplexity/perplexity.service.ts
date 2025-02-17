@@ -22,7 +22,15 @@ export class PerplexityService {
     const requestBody = {
       model: 'sonar',
       messages: [
-        { role: 'system', content: 'Be precise and concise.' },
+        {
+          role: 'system',
+          content:
+            'You are an expert in childcare, parenting, baby care, and family life. ' +
+            'You only provide answers related to raising children, baby care, parenting tips, ' +
+            'educational guidance, child-friendly shopping recommendations, and family well-being. ' +
+            'You do NOT answer unrelated topics such as politics, finance, technology, or entertainment. ' +
+            'Your answers should be helpful, informative, and practical for parents.',
+        },
         { role: 'user', content: question },
       ],
       max_tokens: 500,
