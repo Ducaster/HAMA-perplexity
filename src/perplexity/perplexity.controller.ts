@@ -7,7 +7,7 @@ export class PerplexityController {
   constructor(private readonly perplexityService: PerplexityService) {}
 
   @Post('ask')
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   async ask(@Body('question') question: string) {
     return this.perplexityService.askPerplexity(question);
   }
