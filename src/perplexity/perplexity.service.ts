@@ -96,7 +96,7 @@ export class PerplexityService {
         const imageUrl =
           $('meta[property="og:image"]').attr('content') ||
           $('meta[name="twitter:image"]').attr('content') ||
-          'https://t4.ftcdn.net/jpg/07/91/22/59/360_F_791225927_caRPPH99D6D1iFonkCRmCGzkJPf36QDw.jpg'; // 기본 썸네일
+          '/hama_logo.jpg'; // 기본 썸네일
 
         // 이미지 URL을 Base64로 변환
         let base64Image: string = '';
@@ -110,8 +110,7 @@ export class PerplexityService {
           url,
           title: '불러오기 실패',
           description: '페이지를 가져올 수 없습니다.',
-          image:
-            'https://t4.ftcdn.net/jpg/07/91/22/59/360_F_791225927_caRPPH99D6D1iFonkCRmCGzkJPf36QDw.jpg',
+          image: '/hama_logo.jpg',
         };
       }
     };
