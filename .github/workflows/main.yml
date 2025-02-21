@@ -25,5 +25,5 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-          docker build -t 192.168.2.76:443/hama/hama-perplexity:$BUILD_NUMBER .
-          docker push 192.168.2.76:443/hama/hama-perplexity:$BUILD_NUMBER
+          docker build -t 192.168.2.76:443/hama/hama-chat:$BUILD_NUMBER .
+          docker push 192.168.2.76:443/hama/hama-chat:$BUILD_NUMBER
