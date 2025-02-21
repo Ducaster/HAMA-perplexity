@@ -21,9 +21,8 @@ jobs:
       - name: Login to Harbor
         run: |
           docker login https://192.168.2.76:443 -u ${{ secrets.HARBOR_USERNAME }} -p ${{ secrets.HARBOR_PASSWORD }}
-
-
       - name: Build and push Docker images
         run: |
+          BUILD_NUMBER=${{ github.run_number }} # GitHub Actions 빌드 번호
           docker build -t 192.168.2.76:443/hama/hama-chat:$BUILD_NUMBER .
           docker push 192.168.2.76:443/hama/hama-chat:$BUILD_NUMBER
